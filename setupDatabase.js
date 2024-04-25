@@ -6,7 +6,8 @@ db.serialize(() => {
 db.run(`CREATE TABLE IF NOT EXISTS category (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     category_name TEXT NOT NULL,
-    category_img TEXT
+    category_img TEXT,
+    img_name TEXT
 )`);
 
 // genre テーブルの作成

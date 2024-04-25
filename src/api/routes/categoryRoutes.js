@@ -12,6 +12,22 @@
         res.json({ categories: rows });
     });
     });
+    
+     // 特定のカテゴリーを取得
+    router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    db.get('SELECT * FROM category WHERE id = ?', [id], (err, row) => {
+        if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+        }
+        if (row) {
+        res.json(row);
+        } else {
+        res.status(404).json({ error: 'Category not found' });
+        }
+    });
+    });
 
     // 新しいカテゴリを追加
     router.post('/', (req, res) => {
