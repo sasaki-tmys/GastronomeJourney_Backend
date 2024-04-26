@@ -31,9 +31,9 @@
 
     // 新しいカテゴリを追加
     router.post('/', (req, res) => {
-    const { category_name, category_img } = req.body;
-    const sql = 'INSERT INTO category (category_name, category_img) VALUES (?, ?)';
-    db.run(sql, [category_name, category_img], function(err) {
+    const { category_name, category_img, img_name } = req.body;
+    const sql = 'INSERT INTO category (category_name, category_img, img_name) VALUES (?, ?, ?)';
+    db.run(sql, [category_name, category_img, img_name], function(err) {
         if (err) {
         res.status(500).json({ error: err.message });
         return;
@@ -44,10 +44,10 @@
 
     // カテゴリを更新
     router.put('/:id', (req, res) => {
-    const { category_name, category_img } = req.body;
+    const { category_name, category_img, img_name } = req.body;
     const { id } = req.params;
-    const sql = 'UPDATE category SET category_name = ?, category_img = ? WHERE id = ?';
-    db.run(sql, [category_name, category_img, id], function(err) {
+    const sql = 'UPDATE category SET category_name = ?, category_img = ?, img_name = ? WHERE id = ?';
+    db.run(sql, [category_name, category_img, img_name, id], function(err) {
         if (err) {
         res.status(500).json({ error: err.message });
         return;
